@@ -26,7 +26,7 @@ RUN mamba install --yes \
     'libta-lib' \
     'plotly' \
     'pyts' \
-    'sktime' && \
+    'sktime-all-extras' && \
     mamba clean --all -f -y && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
@@ -35,8 +35,8 @@ RUN mamba install --yes \
 RUN pip install --no-cache-dir \
     'ccxt' \
     'mplfinance' \
-    'tensorflow' \
-    'TA-Lib'
+    'TA-Lib' \
+    'tensorflow'
 
 # Install additional Python packages from GitHub
 RUN pip install --no-cache-dir \
