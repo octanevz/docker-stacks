@@ -35,6 +35,7 @@ RUN mamba install --yes \
 RUN pip install --no-cache-dir \
     'ccxt' \
     'mplfinance' \
+    'tensorflow' \
     'TA-Lib'
 
 # Install additional Python packages from GitHub
