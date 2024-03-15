@@ -2,7 +2,8 @@
 # Distributed under the terms of the Modified BSD License.
 ARG REGISTRY=docker.io
 ARG OWNER=octanevz
-ARG BASE_CONTAINER=quay.io/jupyter/scipy-notebook
+ARG TAG=v240315
+ARG BASE_CONTAINER=octanevz/pypacs:${TAG}
 FROM $BASE_CONTAINER
 
 LABEL maintainer="octanevz <octanevz@gmx.net>"
