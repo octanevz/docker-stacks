@@ -39,7 +39,10 @@ RUN mamba install --yes \
 RUN pip install --no-cache-dir \
     'ccxt' \
     'mplfinance' \
-    'TA-Lib'
+    'pytest' \
+    'TA-Lib' && \
+    fix-permissions "${CONDA_DIR}" && \
+    fix-permissions "/home/${NB_USER}"
 
 # Install additional Python packages from GitHub
 # RUN pip install --no-cache-dir \
