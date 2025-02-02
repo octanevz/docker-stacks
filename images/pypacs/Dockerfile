@@ -2,7 +2,7 @@
 # Distributed under the terms of the Modified BSD License.
 ARG REGISTRY=docker.io
 ARG OWNER=octanevz
-ARG BASE_CONTAINER=quay.io/jupyter/scipy-notebook
+ARG BASE_CONTAINER=quay.io/jupyter/scipy-notebook:python-3.11.10
 FROM $BASE_CONTAINER
 
 LABEL maintainer="octanevz <octanevz@gmx.net>"
@@ -25,6 +25,7 @@ USER ${NB_UID}
 RUN mamba install --yes \
     'libta-lib' \
     'plotly' \
+    'pyscaffold' \
     'pyts' \
     'sktime-all-extras' && \
     mamba clean --all -f -y && \

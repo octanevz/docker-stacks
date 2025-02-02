@@ -2,7 +2,7 @@
 # Distributed under the terms of the Modified BSD License.
 ARG REGISTRY=docker.io
 ARG OWNER=octanevz
-ARG TAG=v240501
+ARG TAG=v250202
 ARG BASE_CONTAINER=octanevz/pypacs:${TAG}
 FROM $BASE_CONTAINER
 
@@ -16,6 +16,7 @@ USER root
 
 # Install zsh
 RUN apt-get update --yes && \
+    apt-get upgrade -y && \
     apt-get install --yes --no-install-recommends \
     zsh && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
