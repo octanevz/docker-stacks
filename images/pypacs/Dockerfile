@@ -2,7 +2,7 @@
 # Distributed under the terms of the Modified BSD License.
 ARG REGISTRY=docker.io
 ARG OWNER=octanevz
-ARG BASE_CONTAINER=quay.io/jupyter/scipy-notebook:python-3.11.10
+ARG BASE_CONTAINER=quay.io/jupyter/scipy-notebook:python-3.11
 FROM $BASE_CONTAINER
 
 LABEL maintainer="octanevz <octanevz@gmx.net>"
@@ -15,15 +15,18 @@ USER root
 
 # Install zsh
 RUN apt-get update --yes && \
-    apt-get install --yes --no-install-recommends \
-    zsh && \
+    apt-get upgrade -y && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Download and install TA-Lib Core C Library
+RUN curl -L -o ta-lib_0.6.4_amd64.deb https://github.com/ta-lib/ta-lib/releases/download/v0.6.4/ta-lib_0.6.4_amd64.deb \
+    && dpkg -i ta-lib_0.6.4_amd64.deb \
+    && rm ta-lib_0.6.4_amd64.deb
 
 USER ${NB_UID}
 
 # Install additional packages
 RUN mamba install --yes \
-    'libta-lib' \
     'plotly' \
     'pyscaffold' \
     'pyts' \
@@ -36,9 +39,8 @@ RUN mamba install --yes \
 RUN pip install --no-cache-dir \
     'ccxt' \
     'mplfinance' \
-    'TA-Lib' \
-    'tensorflow'
+    'TA-Lib'
 
 # Install additional Python packages from GitHub
-RUN pip install --no-cache-dir \
-    'git+https://github.com/twopirllc/pandas-ta.git@development'
+# RUN pip install --no-cache-dir \
+#     'git+https://github.com/twopirllc/pandas-ta.git@development'

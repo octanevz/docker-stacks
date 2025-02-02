@@ -16,7 +16,6 @@ USER root
 
 # Install zsh
 RUN apt-get update --yes && \
-    apt-get upgrade -y && \
     apt-get install --yes --no-install-recommends \
     zsh && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -45,7 +44,7 @@ RUN chmod 664 /home/${NB_USER}/.zshrc && \
     sed -i 's/\r$//' /home/${NB_USER}/.zshrc && \
     sed -i 's/\r$//' /home/${NB_USER}/.p10k.zsh
 
-ENV SHELL /usr/bin/zsh
+ENV SHELL=/usr/bin/zsh
 
 USER ${NB_UID}
 WORKDIR "${HOME}"
