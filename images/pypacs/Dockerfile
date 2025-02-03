@@ -40,10 +40,11 @@ RUN pip install --no-cache-dir \
     'ccxt' \
     'mplfinance' \
     'pytest' \
+    'pytest-cov' \
     'TA-Lib' && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
 
 # Install additional Python packages from GitHub
-# RUN pip install --no-cache-dir \
-#     'git+https://github.com/twopirllc/pandas-ta.git@development'
+RUN pip install --no-cache-dir \
+    'git+https://github.com/twopirllc/pandas-ta.git@development'

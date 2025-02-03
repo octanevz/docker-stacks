@@ -2,7 +2,7 @@
 # Distributed under the terms of the Modified BSD License.
 ARG REGISTRY=docker.io
 ARG OWNER=octanevz
-ARG TAG=v250202
+ARG TAG=v250203
 ARG BASE_CONTAINER=octanevz/pypacs:${TAG}
 FROM $BASE_CONTAINER
 
